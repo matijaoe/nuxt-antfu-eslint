@@ -6,6 +6,31 @@ import antfu from '@antfu/eslint-config'
 // use this comment to sort the object manually
 // /* eslint perfectionist/sort-objects: "error" */
 export default antfu({
+  stylistic: {
+    indent: 2,
+    quotes: 'single',
+  },
+
+  vue: true,
+  unocss: false,
+  react: false,
+  jsonc: false,
+  yaml: false,
+
+  typescript: {
+    tsconfigPath: 'tsconfig.json',
+  },
+
+  formatters: {
+    css: false,
+    html: true,
+    markdown: 'prettier',
+  },
+
+  ignores: [
+    '**/dist',
+    '**/node_modules',
+  ],
 
   overrides: {
     javascript: {
@@ -60,7 +85,14 @@ export default antfu({
       ],
       'ts/no-explicit-any': 'warn',
       'ts/no-use-before-define': 'off',
+      'ts/prefer-as-const': 'error', // TODO: make it work in vue script
+      'ts/prefer-nullish-coalescing': 'error',
       'ts/prefer-ts-expect-error': 'off',
+
+      // eslint dies
+      // 'prefer-destructuring': 'off',
+      // 'ts/prefer-destructuring': 'error',
+      // 'ts/prefer-for-of': 'error',
     },
 
     vue: {
@@ -89,31 +121,29 @@ export default antfu({
           lang: 'postcss'
         },
       }],
-      'vue/block-order': ['error', {
-        order: ['script', 'template', 'style']
-      }],
+      'vue/block-order': ['error', { order: ['script', 'template', 'style'] }],
       'vue/brace-style': ['error', '1tbs', { allowSingleLine: true }],
       'vue/comma-dangle': ['error', 'only-multiline'],
       'vue/component-api-style': ['error', ['script-setup']],
       'vue/component-name-in-template-casing': ['error', 'PascalCase'],
       'vue/define-emits-declaration': ['error', 'type-based'],
-      // 'vue/no-static-inline-styles': 'warn',
       'vue/define-emits-declaration': ['warn', 'type-literal'],
       'vue/define-props-declaration': ['error', 'type-based'],
       'vue/first-attribute-linebreak': ['error', {
+        // this is the default
         multiline: 'below',
         singleline: 'ignore',
-      }], // this is the default
+      }],
       'vue/html-button-has-type': 'error',
       'vue/html-self-closing': 'off',
       'vue/max-attributes-per-line': ['error', {
         multiline: { max: 1 },
         singleline: { max: 20 },
       }],
+      'vue/no-bare-strings-in-template': 'off', // to be used for localization
       'vue/no-duplicate-attr-inheritance': 'error',
       'vue/no-empty-component-block': 'warn',
       'vue/no-multiple-objects-in-class': 'error',
-      // 'vue/no-setup-props-reactivity-loss': 'off' // enable if when experimental propsDesctructure
       'vue/no-ref-as-operand': 'error',
       'vue/no-ref-object-reactivity-loss': 'error',
       'vue/no-restricted-custom-event': ['warn', {
@@ -135,24 +165,20 @@ export default antfu({
           message: 'Do not use deprecated HTML tags'
         }
       ],
-
-      // 'vue/no-bare-strings-in-template': 'warn', // to be used for localization
       'vue/no-root-v-if': 'error',
-      'vue/no-side-effects-in-computed-properties': 'error', // very important, but does not work,
-      'vue/no-undef-properties': 'error', // useful when using js
+      'vue/no-setup-props-reactivity-loss': 'error', // set to 'off' if using experimental propsDestructure
+      'vue/no-side-effects-in-computed-properties': 'error', // ! does not work
+      'vue/no-static-inline-styles': 'warn',
+      'vue/no-undef-properties': 'error', // useful when using js, not needed in ts
       'vue/no-useless-mustaches': 'error',
       'vue/no-useless-template-attributes': 'error',
       'vue/no-v-text': 'error',
       'vue/object-curly-newline': ['error', { consistent: true, multiline: true }],
-      'vue/padding-line-between-tags': ['error', [
-        { blankLine: 'never', next: '*', prev: '*' }
-      ]],
+      'vue/padding-line-between-tags': ['error', [{ blankLine: 'never', next: '*', prev: '*' }]],
       'vue/prefer-define-options': 'error',
       'vue/prefer-template': 'error',
       'vue/require-explicit-emits': 'error',
-      'vue/return-in-computed-property': ['error', {
-        treatUndefinedAsUnspecified: true
-      }], // does not work
+      'vue/return-in-computed-property': ['error', { treatUndefinedAsUnspecified: true }], // ! does not work
     },
   },
 
