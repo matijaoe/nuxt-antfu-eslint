@@ -9,7 +9,7 @@ export default antfu({
 
   overrides: {
     javascript: {
-      'no-alert': 'off',
+      'no-alert': 'warn',
       'no-await-in-loop': 'error',
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'no-nested-ternary': 'error',
@@ -32,7 +32,6 @@ export default antfu({
 
     typescript: {
       'default-param-last': 'error',
-      'no-alert': 'error',
       'no-throw-literal': 'error',
       'no-use-before-define': 'off',
       'ts/ban-ts-comment': 'off',
@@ -161,7 +160,6 @@ export default antfu({
     'antfu/top-level-function': 'off',
 
     'curly': ['error', 'all'],
-    'no-alert': 'warn',
 
     'style/array-bracket-newline': ['error', 'consistent'],
     'style/arrow-parens': ['error', 'always'],
