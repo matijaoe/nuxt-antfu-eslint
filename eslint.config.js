@@ -22,7 +22,7 @@ export default antfu({
   },
 
   formatters: {
-    css: false,
+    css: true,
     html: true,
     markdown: 'prettier',
   },
