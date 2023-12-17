@@ -1,13 +1,11 @@
-// TODO: temp fix
-/* eslint-disable ts/no-unsafe-member-access */
-/* eslint-disable ts/no-unsafe-assignment */
-/* eslint-disable ts/no-unsafe-argument */
+import type { Awaitable, FlatConfigItem, OptionsConfig, UserConfigItem } from '@antfu/eslint-config'
 import antfu from '@antfu/eslint-config'
 
+// TODO: cant get it to import
 const matijaoe = (
-  options,
-  ...userConfigs
-) => antfu({
+  options?: OptionsConfig & FlatConfigItem,
+  ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]
+): Promise<UserConfigItem[]> => antfu({
   stylistic: {
     indent: 2,
     quotes: 'single',
@@ -278,9 +276,4 @@ const matijaoe = (
   },
 }, userConfigs)
 
-// https://eslint.org/docs/latest/use/configure/rules#using-configuration-comments-1
-// https://github.com/azat-io/eslint-plugin-perfectionist
-
-// use this comment to sort the object manually
-// /* eslint perfectionist/sort-objects: "error" */
-export default matijaoe()
+export default matijaoe
